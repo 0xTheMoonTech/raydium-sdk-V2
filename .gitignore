@@ -114,10 +114,11 @@ dist
 
 # misc
 .DS_Store
-lib/
+#lib/
 .coverage/
 docs/
 test/local/
 test/data/
 
 example/node_modules/
+.idea
