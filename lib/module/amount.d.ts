@@ -1,5 +1,5 @@
 import 'bn.js';
-export { c9 as CurrencyAmount, c8 as TokenAmount, c7 as splitNumber } from '../api-790b1baf.js';
+export { c9 as CurrencyAmount, c8 as TokenAmount, c7 as splitNumber } from '../api-80d620f3.js';
 import '../common/logger.js';
 import './currency.js';
 import './token.js';
