@@ -86,6 +86,7 @@ export class Raydium {
 
   private _connection: Connection;
   private _owner: Owner | undefined;
+  private _feePayer: Owner | undefined;
   public api: Api;
   private _apiCacheTime: number;
   private _signAllTransactions?: SignAllTransactions;
@@ -192,6 +193,18 @@ export class Raydium {
   }
   public setOwner(owner?: PublicKey | Keypair): Raydium {
     this._owner = owner ? new Owner(owner) : undefined;
+    this.account.resetTokenAccounts();
+    return this;
+  }
+  get feePayer(): Owner | undefined {
+    return this._feePayer;
+  }
+  get feePayerPubKey(): PublicKey {
+    if (!this._feePayer) throw new Error(EMPTY_OWNER);
+    return this._feePayer.publicKey;
+  }
+  public setFeePayer(feePayer?: PublicKey | Keypair): Raydium {
+    this._feePayer = feePayer ? new Owner(feePayer) : undefined;
     this.account.resetTokenAccounts();
     return this;
   }

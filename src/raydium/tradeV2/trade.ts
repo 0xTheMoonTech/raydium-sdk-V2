@@ -198,7 +198,7 @@ export default class TradeV2 extends ModuleBase {
         skipCloseAccount: !useSolBalance,
         createInfo: useSolBalance
           ? {
-            payer: this.scope.ownerPubKey,
+            payer: this.scope.feePayerPubKey,
             amount: amountIn.amount.raw,
           }
           : undefined,
@@ -226,7 +226,7 @@ export default class TradeV2 extends ModuleBase {
         owner: this.scope.ownerPubKey,
         skipCloseAccount: true,
         createInfo: {
-          payer: this.scope.ownerPubKey,
+          payer: this.scope.feePayerPubKey,
           amount: 0,
         },
         associatedOnly: isOutputSol ? false : ownerInfo.associatedOnly,
