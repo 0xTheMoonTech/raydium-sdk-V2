@@ -28,6 +28,7 @@ export interface RaydiumLoadParams extends TokenAccountDataProp, Omit<RaydiumApi
   cluster?: Cluster;
   // user public key
   owner?: PublicKey | Keypair;
+  feePayer?: PublicKey | Keypair;
   /* ================= api ================= */
   // api request interval in ms, -1 means never request again, 0 means always use fresh data, default is 5 mins (5 * 60 * 1000)
   apiRequestInterval?: number;
@@ -108,6 +109,7 @@ export class Raydium {
       connection,
       cluster,
       owner,
+      feePayer,
       api,
       defaultChainTime,
       defaultChainTimeOffset,
@@ -119,6 +121,7 @@ export class Raydium {
     this._connection = connection;
     this.cluster = cluster || "mainnet";
     this._owner = owner ? new Owner(owner) : undefined;
+    this._feePayer = feePayer ? new Owner(feePayer) : undefined;
     this._signAllTransactions = config.signAllTransactions;
     this.blockhashCommitment = blockhashCommitment;
     this.loopMultiTxStatus = loopMultiTxStatus;
@@ -205,7 +208,6 @@ export class Raydium {
   }
   public setFeePayer(feePayer?: PublicKey | Keypair): Raydium {
     this._feePayer = feePayer ? new Owner(feePayer) : undefined;
-    this.account.resetTokenAccounts();
     return this;
   }
   get connection(): Connection {

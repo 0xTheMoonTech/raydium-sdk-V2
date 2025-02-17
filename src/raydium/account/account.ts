@@ -210,6 +210,7 @@ export default class Account extends ModuleBase {
       endInstructionTypes: [],
     };
 
+    console.log('getOrCreateTokenAccount createInfo.payer', createInfo.payer)
     if (associatedOnly) {
       const _createATAIns = createAssociatedTokenAccountInstruction(createInfo.payer, ata, owner, mint, tokenProgram);
       const _ataInTokenAcc = this.tokenAccountRawInfos.find((i) => i.pubkey.equals(ata))
