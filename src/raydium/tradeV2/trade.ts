@@ -241,7 +241,7 @@ export default class TradeV2 extends ModuleBase {
         endInstructions: [
           closeAccountInstruction({
             owner: this.scope.ownerPubKey,
-            payer: this.scope.ownerPubKey,
+            payer: this.scope.feePayerPubKey,
             tokenAccount: destinationAcc,
             programId: TOKEN_PROGRAM_ID,
           }),
